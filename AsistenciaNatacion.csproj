@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<RootNamespace>AsistenciaNatacion</RootNamespace>
+		<AssemblyName>Viking</AssemblyName>
+		<Product>VIKING</Product>
+		<Description>Plataforma de gestión para academias, piscinas, CrossFit, entrenamiento funcional y gimnasios.</Description>
+		<Copyright>© 2026 — Todos los derechos reservados.</Copyright>
+		<Version>1.0.0</Version>
+		<InformationalVersion>1.0.0</InformationalVersion>
+		<AssemblyVersion>1.0.0.0</AssemblyVersion>
+		<FileVersion>1.0.0.0</FileVersion>
+			<ApplicationIcon>viking_logo.ico</ApplicationIcon>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Content Include="viking_logo.ico">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="VikingUpdater\VikingUpdater.csproj" ReferenceOutputAssembly="false" />
+	</ItemGroup>
+
+	<Target Name="CopyVikingUpdater" AfterTargets="Build">
+		<Copy SourceFiles="$(MSBuildProjectDirectory)\VikingUpdater\bin\$(Configuration)\net8.0-windows\VikingUpdater.exe" DestinationFiles="$(TargetDir)VikingUpdater.exe" SkipUnchangedFiles="true" Condition="Exists('$(MSBuildProjectDirectory)\VikingUpdater\bin\$(Configuration)\net8.0-windows\VikingUpdater.exe')" />
+	</Target>
+	
+	<ItemGroup>
+	  <Compile Remove="proyecto2\**" />
+	  <Compile Remove="VIKINGO editable 1.1\**" />
+	  <EmbeddedResource Remove="proyecto2\**" />
+	  <EmbeddedResource Remove="VIKINGO editable 1.1\**" />
+	  <None Remove="proyecto2\**" />
+	  <None Remove="VIKINGO editable 1.1\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.8" />
+		<!-- QRCoder: genera las imágenes de código QR. Sin dependencias externas,
+         una vez descargado (dotnet restore) funciona sin internet para siempre. -->
+		<PackageReference Include="QRCoder" Version="1.5.1" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,62 @@
+name: Publicar VIKING
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v4
+
+      - name: Instalar .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restaurar dependencias
+        run: dotnet restore AsistenciaNatacion.csproj
+
+      - name: Publicar GitHub Release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $tag = "${{ github.ref_name }}"
+          $version = $tag.TrimStart('v', 'V')
+
+          # La versión del ejecutable se toma del tag para evitar que el cliente
+          # vea una versión vieja después de una actualización.
+          dotnet publish AsistenciaNatacion.csproj `
+            -c Release `
+            -r win-x64 `
+            --self-contained true `
+            -p:Version=$version `
+            -p:AssemblyVersion=$version.0 `
+            -p:FileVersion=$version.0 `
+            -p:InformationalVersion=$version `
+            -o publish/VIKING
+
+          dotnet publish VikingUpdater/VikingUpdater.csproj `
+            -c Release `
+            -r win-x64 `
+            --self-contained true `
+            -o publish/Updater
+
+          Copy-Item publish/Updater/VikingUpdater.exe publish/VIKING/VikingUpdater.exe -Force
+
+          if (Test-Path 'publish/VIKING.zip') { Remove-Item 'publish/VIKING.zip' -Force }
+          Compress-Archive -Path 'publish/VIKING/*' -DestinationPath 'publish/VIKING.zip' -CompressionLevel Optimal
+
+          gh release create $tag `
+            publish/VIKING.zip `
+            --title "VIKING $version" `
+            --generate-notes `
+            --latest

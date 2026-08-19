@@ -1,0 +1,19 @@
+# Visual Studio / .NET
+.vs/
+bin/
+obj/
+Debug/
+Release/
+
+# Datos locales de VIKING: nunca deben publicarse en GitHub
+*.db
+*.db-wal
+*.db-shm
+Backups/
+crash.log
+update.log
+
+# Archivos temporales
+*.user
+*.suo
+*.tmp
