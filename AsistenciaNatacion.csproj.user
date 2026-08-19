@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="AcercaDeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="AsistenciaHoyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="AsistenciaRapidaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="AuditoriaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Avisosform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="EditarAlumnoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="HistorialMesesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ImportarAsistenciaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="NuevoAlumnoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="PreciosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Presentation\Forms\AdministrarActividadesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Presentation\Forms\AdministrarOpcionesPlanForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Presentation\Forms\AdministrarPlanesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Presentation\Forms\ConfiguracionEstablecimientoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Presentation\Forms\ConfiguracionOperadorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Qrform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="RegistrarAbonoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="SeleccionarActividadForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>
