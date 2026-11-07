@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:admin="clr-namespace:VikingMobile.Application.Admin"
+    x:Class="VikingMobile.AdminReportesPage"
+    BackgroundColor="Black"
+    Shell.NavBarIsVisible="False">
+
+    <RefreshView
+        x:Name="ContenidoRefresh"
+        RefreshColor="White"
+        Refreshing="ContenidoRefresh_Refreshing">
+
+        <ScrollView>
+
+            <VerticalStackLayout Padding="24,55,24,35" Spacing="0">
+
+                <Grid ColumnDefinitions="Auto,*">
+                    <Label
+                        Text="‹"
+                        TextColor="White"
+                        FontSize="30"
+                        FontAttributes="Bold"
+                        VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="VolverLabel_Tapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label
+                        Grid.Column="1"
+                        Text="📊 Reportes"
+                        TextColor="White"
+                        FontSize="22"
+                        FontAttributes="Bold"
+                        Margin="10,0,0,0"
+                        VerticalOptions="Center" />
+                </Grid>
+
+                <!-- SELECTOR DE MES -->
+                <Border
+                    Margin="0,20,0,0"
+                    Padding="16,4"
+                    BackgroundColor="#171717"
+                    Stroke="#444444"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 14">
+
+                    <Picker
+                        x:Name="MesPicker"
+                        TextColor="White"
+                        TitleColor="#666666"
+                        SelectedIndexChanged="MesPicker_SelectedIndexChanged" />
+
+                </Border>
+
+                <!-- MOROSOS / POR VENCER -->
+                <Grid Margin="0,18,0,0" ColumnDefinitions="*,*" ColumnSpacing="12">
+
+                    <Border
+                        x:Name="PorVencerBorder"
+                        Padding="16"
+                        BackgroundColor="#171717"
+                        Stroke="#444444"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 14">
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="⚠️ POR VENCER" TextColor="#999999" FontSize="11" FontAttributes="Bold" />
+                            <Label x:Name="PorVencerLabel" Text="0" TextColor="#FBBF24" FontSize="24" FontAttributes="Bold" />
+                        </VerticalStackLayout>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="PorVencer_Tapped" />
+                        </Border.GestureRecognizers>
+                    </Border>
+
+                    <Border
+                        Grid.Column="1"
+                        x:Name="MorososBorder"
+                        Padding="16"
+                        BackgroundColor="#171717"
+                        Stroke="#444444"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 14">
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="🔴 MOROSOS" TextColor="#999999" FontSize="11" FontAttributes="Bold" />
+                            <Label x:Name="MorososLabel" Text="0" TextColor="#F87171" FontSize="24" FontAttributes="Bold" />
+                        </VerticalStackLayout>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Morosos_Tapped" />
+                        </Border.GestureRecognizers>
+                    </Border>
+
+                </Grid>
+
+                <!-- RECAUDACIÓN -->
+                <Label Text="💰 RECAUDACIÓN" TextColor="#999999" FontSize="12" FontAttributes="Bold" Margin="4,26,0,8" />
+
+                <Border
+                    Padding="18"
+                    BackgroundColor="#171717"
+                    Stroke="#444444"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 14">
+
+                    <VerticalStackLayout Spacing="10">
+
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Text="Total del mes" TextColor="#999999" FontSize="13" VerticalOptions="Center" />
+                            <Label x:Name="RecaudadoLabel" Grid.Column="1" Text="$0" TextColor="White" FontSize="22" FontAttributes="Bold" />
+                        </Grid>
+
+                        <Label x:Name="CantidadPagosLabel" Text="0 pagos registrados" TextColor="#888888" FontSize="12" />
+
+                        <BoxView HeightRequest="1" BackgroundColor="#333333" Margin="0,4,0,4" />
+
+                        <CollectionView x:Name="MetodosCollection" SelectionMode="None" EmptyView="Sin pagos en este periodo">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="admin:PagoMetodoResumen">
+                                    <Grid ColumnDefinitions="*,Auto,Auto" Padding="0,6">
+                                        <Label Text="{Binding Metodo}" TextColor="White" FontSize="13" />
+                                        <Label Grid.Column="1" Text="{Binding Cantidad, StringFormat='{0}x'}" TextColor="#888888" FontSize="12" Margin="0,0,10,0" />
+                                        <Label Grid.Column="2" Text="{Binding Total, StringFormat='${0}'}" TextColor="#4ADE80" FontSize="13" FontAttributes="Bold" />
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- ASISTENCIA -->
+                <Label Text="📅 ASISTENCIA" TextColor="#999999" FontSize="12" FontAttributes="Bold" Margin="4,26,0,8" />
+
+                <Border
+                    Padding="18"
+                    BackgroundColor="#171717"
+                    Stroke="#444444"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 14">
+
+                    <VerticalStackLayout Spacing="10">
+
+                        <Grid ColumnDefinitions="*,*">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="TOTAL REGISTROS" TextColor="#888888" FontSize="11" FontAttributes="Bold" />
+                                <Label x:Name="AsistenciasTotalLabel" Text="0" TextColor="White" FontSize="20" FontAttributes="Bold" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="1" Spacing="2">
+                                <Label Text="ALUMNOS QUE ASISTIERON" TextColor="#888888" FontSize="11" FontAttributes="Bold" />
+                                <Label x:Name="AlumnosAsistieronLabel" Text="0" TextColor="White" FontSize="20" FontAttributes="Bold" />
+                            </VerticalStackLayout>
+                        </Grid>
+
+                        <BoxView HeightRequest="1" BackgroundColor="#333333" Margin="0,4,0,4" />
+
+                        <Label Text="Por día" TextColor="#888888" FontSize="12" FontAttributes="Bold" />
+
+                        <CollectionView x:Name="DiasCollection" SelectionMode="None" EmptyView="Sin asistencias en este periodo">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="admin:AsistenciaDiaResumen">
+                                    <Grid ColumnDefinitions="*,Auto" Padding="0,4">
+                                        <Label Text="{Binding Fecha}" TextColor="White" FontSize="13" />
+                                        <Label Grid.Column="1" Text="{Binding Cantidad}" TextColor="#888888" FontSize="13" />
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+            </VerticalStackLayout>
+
+        </ScrollView>
+
+    </RefreshView>
+
+</ContentPage>

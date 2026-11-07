@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
+    x:Class="VikingMobile.MainPage"
+    BackgroundColor="Black"
+    NavigationPage.HasNavigationBar="False">
+
+    <Grid>
+
+        <!-- ========================================= -->
+        <!-- CÁMARA -->
+        <!-- ========================================= -->
+
+        <zxing:CameraBarcodeReaderView
+            x:Name="BarcodeReaderView"
+            IsDetecting="True"
+            BarcodesDetected="BarcodesDetected"
+            CameraLocation="Rear" />
+
+        <!-- ========================================= -->
+        <!-- OSCURECIMIENTO SUPERIOR -->
+        <!-- ========================================= -->
+
+        <BoxView
+            BackgroundColor="#CC000000"
+            HeightRequest="120"
+            VerticalOptions="Start" />
+
+        <!-- ========================================= -->
+        <!-- ENCABEZADO -->
+        <!-- ========================================= -->
+
+        <VerticalStackLayout
+            VerticalOptions="Start"
+            HorizontalOptions="Center"
+            Spacing="0"
+            Padding="22,44,22,0">
+
+            <Label
+                Text="VIKING"
+                TextColor="White"
+                FontSize="28"
+                FontAttributes="Bold"
+                HorizontalTextAlignment="Center"
+                CharacterSpacing="4" />
+
+            <Label
+                Text="MOBILE"
+                TextColor="#AAAAAA"
+                FontSize="11"
+                FontAttributes="Bold"
+                HorizontalTextAlignment="Center"
+                CharacterSpacing="5" />
+
+            <Label
+                x:Name="StatusLabel"
+                Text="Listo para escanear"
+                TextColor="#CCCCCC"
+                FontSize="13"
+                HorizontalTextAlignment="Center"
+                Margin="0,8,0,0" />
+
+        </VerticalStackLayout>
+
+        <!-- ========================================= -->
+        <!-- MARCO DEL QR -->
+        <!-- ========================================= -->
+
+        <Border
+            WidthRequest="285"
+            HeightRequest="285"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Stroke="White"
+            StrokeThickness="3"
+            StrokeShape="RoundRectangle 24"
+            BackgroundColor="Transparent">
+
+            <Grid>
+
+                <Border
+                    WidthRequest="45"
+                    HeightRequest="45"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start"
+                    Stroke="White"
+                    StrokeThickness="5"
+                    StrokeShape="RoundRectangle 15"
+                    BackgroundColor="Transparent"
+                    Margin="-3,-3,0,0" />
+
+                <Border
+                    WidthRequest="45"
+                    HeightRequest="45"
+                    HorizontalOptions="End"
+                    VerticalOptions="Start"
+                    Stroke="White"
+                    StrokeThickness="5"
+                    StrokeShape="RoundRectangle 15"
+                    BackgroundColor="Transparent"
+                    Margin="0,-3,-3,0" />
+
+                <Border
+                    WidthRequest="45"
+                    HeightRequest="45"
+                    HorizontalOptions="Start"
+                    VerticalOptions="End"
+                    Stroke="White"
+                    StrokeThickness="5"
+                    StrokeShape="RoundRectangle 15"
+                    BackgroundColor="Transparent"
+                    Margin="-3,0,0,-3" />
+
+                <Border
+                    WidthRequest="45"
+                    HeightRequest="45"
+                    HorizontalOptions="End"
+                    VerticalOptions="End"
+                    Stroke="White"
+                    StrokeThickness="5"
+                    StrokeShape="RoundRectangle 15"
+                    BackgroundColor="Transparent"
+                    Margin="0,0,-3,-3" />
+
+            </Grid>
+
+        </Border>
+
+        <!-- ========================================= -->
+        <!-- TEXTO DEL ESCÁNER -->
+        <!-- ========================================= -->
+
+        <Label
+            Text="ESCANEA EL QR"
+            TextColor="White"
+            FontSize="18"
+            FontAttributes="Bold"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Margin="0,330,0,0"
+            CharacterSpacing="2" />
+
+        <!-- ========================================= -->
+        <!-- TARJETA DEL ALUMNO -->
+        <!-- ========================================= -->
+
+        <Border
+            x:Name="AlumnoCard"
+            IsVisible="False"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            WidthRequest="330"
+            Padding="24"
+            BackgroundColor="#F8F8F8"
+            StrokeThickness="0"
+            StrokeShape="RoundRectangle 28">
+
+            <VerticalStackLayout
+                Spacing="8">
+
+                <Border
+                    x:Name="CardSemaforoBanner"
+                    Padding="12,6"
+                    HorizontalOptions="Center"
+                    BackgroundColor="#16803A"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 16">
+                    <Label
+                        x:Name="CardSemaforoLabel"
+                        Text="🟢 SOLVENTE"
+                        TextColor="White"
+                        FontSize="13"
+                        FontAttributes="Bold"
+                        CharacterSpacing="1" />
+                </Border>
+
+                <!-- Foto circular del alumno en escáner -->
+                <Border
+                    WidthRequest="70"
+                    HeightRequest="70"
+                    Stroke="#4ADE80"
+                    StrokeThickness="2"
+                    StrokeShape="RoundRectangle 35"
+                    BackgroundColor="#E2E8F0"
+                    HorizontalOptions="Center"
+                    Margin="0,4,0,4">
+
+                    <Grid>
+                        <Label
+                            x:Name="CardFotoPlaceholderLabel"
+                            Text="👤"
+                            FontSize="30"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+
+                        <Image
+                            x:Name="CardFotoAlumnoImage"
+                            Aspect="AspectFill"
+                            WidthRequest="70"
+                            HeightRequest="70"
+                            IsVisible="False" />
+                    </Grid>
+
+                </Border>
+
+                <Label
+                    x:Name="AlumnoNombreLabel"
+                    Text="Alumno"
+                    TextColor="#171717"
+                    FontSize="22"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"
+                    LineBreakMode="TailTruncation" />
+
+                <Label
+                    x:Name="AlumnoCodigoLabel"
+                    Text="A0000"
+                    TextColor="#666666"
+                    FontSize="14"
+                    HorizontalTextAlignment="Center"
+                    Margin="0,-2,0,8" />
+
+                <Label
+                    x:Name="CardDetalleEstadoLabel"
+                    Text=""
+                    TextColor="#D97706"
+                    FontSize="12"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"
+                    IsVisible="False"
+                    Margin="0,0,0,4" />
+
+                <BoxView
+                    HeightRequest="1"
+                    BackgroundColor="#DDDDDD"
+                    Margin="0,0,0,8" />
+
+                <Grid
+                    ColumnDefinitions="40,*"
+                    ColumnSpacing="8">
+
+                    <Label
+                        Text="📋"
+                        FontSize="22"
+                        VerticalOptions="Center"
+                        HorizontalTextAlignment="Center" />
+
+                    <VerticalStackLayout
+                        Grid.Column="1"
+                        Spacing="1">
+
+                        <Label
+                            Text="PLAN"
+                            TextColor="#888888"
+                            FontSize="11"
+                            FontAttributes="Bold" />
+
+                        <Label
+                            x:Name="PlanLabel"
+                            Text="Sin plan"
+                            TextColor="#222222"
+                            FontSize="17"
+                            FontAttributes="Bold" />
+
+                    </VerticalStackLayout>
+
+                </Grid>
+
+                <Grid
+                    ColumnDefinitions="40,*"
+                    ColumnSpacing="8"
+                    Margin="0,8,0,0">
+
+                    <Label
+                        Text="📅"
+                        FontSize="22"
+                        VerticalOptions="Center"
+                        HorizontalTextAlignment="Center" />
+
+                    <VerticalStackLayout
+                        Grid.Column="1"
+                        Spacing="1">
+
+                        <Label
+                            Text="VENCIMIENTO"
+                            TextColor="#888888"
+                            FontSize="11"
+                            FontAttributes="Bold" />
+
+                        <Label
+                            x:Name="VencimientoLabel"
+                            Text="—"
+                            TextColor="#222222"
+                            FontSize="17"
+                            FontAttributes="Bold" />
+
+                    </VerticalStackLayout>
+
+                </Grid>
+
+            </VerticalStackLayout>
+
+        </Border>
+
+        <!-- ========================================= -->
+        <!-- INDICACIÓN INFERIOR -->
+        <!-- ========================================= -->
+
+        <Border
+            HorizontalOptions="Center"
+            VerticalOptions="End"
+            Margin="20,0,20,35"
+            Padding="18,12"
+            BackgroundColor="#CC000000"
+            StrokeThickness="0"
+            StrokeShape="RoundRectangle 18">
+
+            <Label
+                Text="Acerca el código QR al marco"
+                TextColor="#EEEEEE"
+                FontSize="14"
+                HorizontalTextAlignment="Center" />
+
+        </Border>
+
+    </Grid>
+
+</ContentPage>

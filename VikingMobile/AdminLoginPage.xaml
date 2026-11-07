@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VikingMobile.AdminLoginPage"
+    BackgroundColor="Black"
+    Shell.NavBarIsVisible="False">
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="24,30,24,35"
+            Spacing="0">
+
+            <Button Text="← Atrás" TextColor="#AAAAAA" BackgroundColor="Transparent" HorizontalOptions="Start" Padding="0" Clicked="Atras_Tapped" />
+
+            <Label
+                Text="VIKING"
+                TextColor="White"
+                FontSize="32"
+                FontAttributes="Bold"
+                CharacterSpacing="5"
+                HorizontalTextAlignment="Center" />
+
+            <Label
+                Text="ACCESO ADMINISTRADOR"
+                TextColor="#AAAAAA"
+                FontSize="13"
+                FontAttributes="Bold"
+                CharacterSpacing="3"
+                HorizontalTextAlignment="Center"
+                Margin="0,0,0,45" />
+
+            <Label
+                Text="USUARIO"
+                TextColor="#999999"
+                FontSize="12"
+                FontAttributes="Bold"
+                CharacterSpacing="1"
+                Margin="0,0,0,8" />
+
+            <Border
+                Padding="18,4"
+                BackgroundColor="#171717"
+                Stroke="#444444"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 14">
+
+                <Entry
+                    x:Name="UsuarioEntry"
+                    Placeholder="administrador"
+                    PlaceholderColor="#666666"
+                    TextColor="White"
+                    FontSize="17"
+                    FontAttributes="Bold"
+                    ReturnType="Next" />
+
+            </Border>
+
+            <Label
+                Text="PIN"
+                TextColor="#999999"
+                FontSize="12"
+                FontAttributes="Bold"
+                CharacterSpacing="1"
+                Margin="0,20,0,8" />
+
+            <Border
+                Padding="18,4"
+                BackgroundColor="#171717"
+                Stroke="#444444"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 14">
+
+                <Entry
+                    x:Name="PinEntry"
+                    Placeholder="••••••"
+                    PlaceholderColor="#666666"
+                    TextColor="White"
+                    FontSize="17"
+                    FontAttributes="Bold"
+                    IsPassword="True"
+                    Keyboard="Numeric"
+                    ReturnType="Go"
+                    Completed="EntrarButton_Clicked" />
+
+            </Border>
+
+            <Label
+                x:Name="EstadoLabel"
+                Text=""
+                TextColor="#F87171"
+                FontSize="13"
+                HorizontalTextAlignment="Center"
+                Margin="0,16,0,0"
+                IsVisible="False" />
+
+            <Button
+                x:Name="EntrarButton"
+                Text="ENTRAR"
+                FontSize="16"
+                FontAttributes="Bold"
+                TextColor="Black"
+                BackgroundColor="White"
+                CornerRadius="16"
+                HeightRequest="55"
+                Margin="0,26,0,0"
+                Clicked="EntrarButton_Clicked" />
+
+                    <Button
+                Text="CONFIGURAR MI PIN"
+                TextColor="#3B82F6"
+                BackgroundColor="Transparent"
+                FontAttributes="Bold"
+                Margin="0,8,0,0"
+                Clicked="CrearPin_Tapped" />
+
+            <Button
+                Text="¿OLVIDASTE TU PIN?"
+                TextColor="#AAAAAA"
+                BackgroundColor="Transparent"
+                FontSize="12"
+                Clicked="RecuperarPin_Tapped" />
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

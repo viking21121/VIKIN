@@ -1,0 +1,24 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:VikingMobile"
+             xmlns:conv="clr-namespace:VikingMobile.Converters"
+             x:Class="VikingMobile.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <conv:EstadoMembresiaColorConverter x:Key="EstadoColorConverter" />
+            <conv:EstadoMembresiaTextoConverter x:Key="EstadoTextoConverter" />
+            <conv:MayorQueCeroConverter x:Key="MayorQueCeroConverter" />
+            <conv:ComprobanteEstadoConverter x:Key="ComprobanteEstadoConverter" />
+            <conv:SolicitudEstadoColorConverter x:Key="SolicitudEstadoColorConverter" />
+            <conv:SolicitudEstadoTextoConverter x:Key="SolicitudEstadoTextoConverter" />
+            <conv:EsRechazadoConverter x:Key="EsRechazadoConverter" />
+            <conv:PuedeSubirComprobanteConverter x:Key="PuedeSubirComprobanteConverter" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

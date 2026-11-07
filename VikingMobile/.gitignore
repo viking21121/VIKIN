@@ -1,0 +1,15 @@
+# Visual Studio / .NET
+.vs/
+bin/
+obj/
+*.user
+*.suo
+
+# Android
+*.apk
+*.aab
+*.keystore
+*.jks
+
+# Datos locales
+Logs/

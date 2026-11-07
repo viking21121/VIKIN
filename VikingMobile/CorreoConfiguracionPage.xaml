@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VikingMobile.CorreoConfiguracionPage"
+             BackgroundColor="Black"
+             Shell.NavBarIsVisible="False">
+    <ScrollView>
+        <VerticalStackLayout Padding="24,35,24,35" Spacing="14">
+            <Button Text="← Atrás" TextColor="#AAAAAA" BackgroundColor="Transparent"
+                    HorizontalOptions="Start" Padding="0" Clicked="Atras_Tapped" />
+            <Label Text="VIKING" TextColor="White" FontSize="32" FontAttributes="Bold"
+                   CharacterSpacing="5" HorizontalTextAlignment="Center" />
+            <Label Text="CORREO DE VERIFICACIÓN" TextColor="#AAAAAA" FontSize="13"
+                   FontAttributes="Bold" CharacterSpacing="2" HorizontalTextAlignment="Center" />
+            <Label Text="Este correo envía los códigos para crear o recuperar PIN." TextColor="#999999"
+                   FontSize="13" HorizontalTextAlignment="Center" Margin="0,0,0,15" />
+            <Label Text="CUENTA EMISORA" TextColor="#999999" FontSize="12" FontAttributes="Bold" />
+            <Border Padding="16,4" BackgroundColor="#171717" Stroke="#444444" StrokeShape="RoundRectangle 14">
+                <Entry x:Name="CorreoEntry" Text="avendanoalejandro841@gmail.com" TextColor="White"
+                       IsReadOnly="True" FontSize="16" />
+            </Border>
+            <Label Text="CONTRASEÑA DE APLICACIÓN DE GMAIL" TextColor="#999999" FontSize="12"
+                   FontAttributes="Bold" Margin="0,10,0,0" />
+            <Border Padding="16,4" BackgroundColor="#171717" Stroke="#444444" StrokeShape="RoundRectangle 14">
+                <Entry x:Name="PasswordEntry" Placeholder="16 caracteres de Google"
+                       PlaceholderColor="#666666" TextColor="White" IsPassword="True"
+                       FontSize="16" Keyboard="Text" />
+            </Border>
+            <Label x:Name="EstadoLabel" TextColor="#AAAAAA" FontSize="13"
+                   HorizontalTextAlignment="Center" IsVisible="False" />
+            <Button Text="GUARDAR CONFIGURACIÓN" TextColor="Black" BackgroundColor="White"
+                    FontAttributes="Bold" CornerRadius="16" HeightRequest="55"
+                    Clicked="Guardar_Tapped" />
+            <Label Text="Usa una contraseña de aplicación de Google, no la contraseña normal de Gmail."
+                   TextColor="#777777" FontSize="12" HorizontalTextAlignment="Center" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

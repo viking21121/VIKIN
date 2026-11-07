@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VikingMobile.ClientePagarPage"
+    BackgroundColor="Black"
+    Shell.NavBarIsVisible="False">
+
+    <ScrollView>
+
+        <VerticalStackLayout Padding="24,55,24,35" Spacing="0">
+
+            <Grid ColumnDefinitions="Auto,*">
+                <Label
+                    Text="‹"
+                    TextColor="White"
+                    FontSize="30"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="VolverLabel_Tapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label
+                    Grid.Column="1"
+                    Text="💳 Pagar"
+                    TextColor="White"
+                    FontSize="22"
+                    FontAttributes="Bold"
+                    Margin="10,0,0,0"
+                    VerticalOptions="Center" />
+            </Grid>
+
+            <Label
+                Text="MÉTODO DE PAGO"
+                TextColor="#999999"
+                FontSize="12"
+                FontAttributes="Bold"
+                Margin="0,24,0,8" />
+
+            <Border
+                Padding="16,4"
+                BackgroundColor="#171717"
+                Stroke="#444444"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 14">
+
+                <Picker
+                    x:Name="MetodoPicker"
+                    TextColor="White"
+                    TitleColor="#666666"
+                    Title="Selecciona un método"
+                    SelectedIndexChanged="MetodoPicker_SelectedIndexChanged" />
+
+            </Border>
+
+            <Border
+                x:Name="DatosBorder"
+                Margin="0,12,0,0"
+                Padding="16"
+                BackgroundColor="#171717"
+                Stroke="#444444"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 14"
+                IsVisible="False">
+
+                <Label
+                    x:Name="DatosLabel"
+                    Text=""
+                    TextColor="White"
+                    FontSize="14" />
+
+            </Border>
+
+            <Label
+                x:Name="SinMetodosLabel"
+                Text="El establecimiento todavía no configuró ningún método de pago. Consulta directamente en recepción."
+                TextColor="#888888"
+                FontSize="13"
+                Margin="0,12,0,0"
+                IsVisible="False" />
+
+            <Label
+                Text="MONTO EN USD"
+                TextColor="#999999"
+                FontSize="12"
+                FontAttributes="Bold"
+                Margin="0,24,0,8" />
+
+            <Border
+                Padding="18,4"
+                BackgroundColor="#171717"
+                Stroke="#444444"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 14">
+
+                <Entry
+                    x:Name="MontoEntry"
+                    Placeholder="0.00"
+                    Keyboard="Numeric"
+                    TextColor="White"
+                    PlaceholderColor="#666666"
+                    FontAttributes="Bold" />
+
+            </Border>
+
+            <Label
+                Text="CONCEPTO"
+                TextColor="#999999"
+                FontSize="12"
+                FontAttributes="Bold"
+                Margin="0,20,0,8" />
+
+            <Border
+                Padding="18,4"
+                BackgroundColor="#171717"
+                Stroke="#444444"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 14">
+
+                <Entry
+                    x:Name="ConceptoEntry"
+                    Placeholder="Mensualidad"
+                    TextColor="White"
+                    PlaceholderColor="#666666" />
+
+            </Border>
+
+            <Button
+                x:Name="AdjuntarButton"
+                Text="📎 ADJUNTAR COMPROBANTE"
+                TextColor="White"
+                BackgroundColor="#171717"
+                BorderColor="#444444"
+                BorderWidth="1"
+                FontAttributes="Bold"
+                CornerRadius="16"
+                HeightRequest="52"
+                Margin="0,24,0,0"
+                Clicked="AdjuntarButton_Clicked" />
+
+            <Border
+                x:Name="PreviewBorder"
+                Margin="0,12,0,0"
+                Padding="6"
+                BackgroundColor="#171717"
+                Stroke="#444444"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 14"
+                IsVisible="False">
+
+                <Image
+                    x:Name="PreviewImagen"
+                    Aspect="AspectFit"
+                    MaximumHeightRequest="320" />
+
+            </Border>
+
+            <Label
+                x:Name="ErrorLabel"
+                Text=""
+                TextColor="#F87171"
+                FontSize="13"
+                Margin="0,14,0,0"
+                IsVisible="False" />
+
+            <Button
+                x:Name="EnviarButton"
+                Text="ENVIAR PAGO"
+                TextColor="Black"
+                BackgroundColor="White"
+                FontAttributes="Bold"
+                CornerRadius="16"
+                HeightRequest="55"
+                Margin="0,16,0,0"
+                Clicked="EnviarButton_Clicked" />
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VikingMobile.ConfiguracionPage"
+    BackgroundColor="Black"
+    NavigationPage.HasNavigationBar="False">
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="30,55,30,35"
+            Spacing="0">
+
+            <!-- LOGO -->
+            <Label
+                x:Name="LogoLabel"
+                Text="VIKING"
+                TextColor="White"
+                FontSize="36"
+                FontAttributes="Bold"
+                CharacterSpacing="5"
+                HorizontalTextAlignment="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="LogoLabel_Tapped" NumberOfTapsRequired="5" />
+                </Label.GestureRecognizers>
+            </Label>
+
+
+            <Label
+                Text="MOBILE"
+                TextColor="#AAAAAA"
+                FontSize="14"
+                FontAttributes="Bold"
+                CharacterSpacing="5"
+                HorizontalTextAlignment="Center"
+                Margin="0,0,0,35" />
+
+            <!-- TÍTULO -->
+            <Label
+                Text="Configuración"
+                TextColor="White"
+                FontSize="26"
+                FontAttributes="Bold"
+                HorizontalTextAlignment="Center" />
+
+            <Label
+                Text="Configura el dispositivo antes de comenzar"
+                TextColor="#AAAAAA"
+                FontSize="14"
+                HorizontalTextAlignment="Center"
+                Margin="0,7,0,25" />
+
+            <!-- MODO -->
+            <Label
+                Text="MODO DE ASISTENCIA"
+                TextColor="#999999"
+                FontSize="12"
+                FontAttributes="Bold"
+                CharacterSpacing="1"
+                Margin="0,0,0,8" />
+
+            <Border
+                x:Name="ModoBorder"
+                Padding="18,15"
+                BackgroundColor="#171717"
+                Stroke="#444444"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 14">
+
+                <Grid
+                    ColumnDefinitions="*,Auto">
+
+                    <Label
+                        x:Name="ModoLabel"
+                        Text="🔵 Automático"
+                        TextColor="White"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        VerticalOptions="Center" />
+
+                    <Label
+                        Grid.Column="1"
+                        Text="›"
+                        TextColor="#AAAAAA"
+                        FontSize="28"
+                        VerticalOptions="Center" />
+
+                </Grid>
+
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="ModoBorder_Tapped" />
+                </Border.GestureRecognizers>
+
+            </Border>
+
+            <!-- SERVIDOR IP -->
+            <Label
+                Text="SERVIDOR VIKING (IP)"
+                TextColor="#999999"
+                FontSize="12"
+                FontAttributes="Bold"
+                CharacterSpacing="1"
+                Margin="0,20,0,8" />
+
+            <Border
+                x:Name="ServerBorder"
+                Padding="18,15"
+                BackgroundColor="#171717"
+                Stroke="#444444"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 14">
+
+                <Grid
+                    ColumnDefinitions="*,Auto">
+
+                    <Label
+                        x:Name="ServerLabel"
+                        Text="http://192.168.1.6:5050"
+                        TextColor="White"
+                        FontSize="15"
+                        FontAttributes="Bold"
+                        VerticalOptions="Center" />
+
+                    <Label
+                        Grid.Column="1"
+                        Text="✏️"
+                        FontSize="16"
+                        VerticalOptions="Center" />
+
+                </Grid>
+
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="ServerBorder_Tapped" />
+                </Border.GestureRecognizers>
+
+            </Border>
+
+            <!-- ACTIVIDAD -->
+            <Label
+                Text="ACTIVIDAD"
+                TextColor="#999999"
+                FontSize="12"
+                FontAttributes="Bold"
+                CharacterSpacing="1"
+                Margin="0,20,0,8" />
+
+            <Border
+                x:Name="ActividadBorder"
+                Padding="18,15"
+                BackgroundColor="#171717"
+                Stroke="#444444"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 14">
+
+                <Grid
+                    ColumnDefinitions="*,Auto">
+
+                    <Label
+                        x:Name="ActividadLabel"
+                        Text="🏢 Seleccionar actividad"
+                        TextColor="White"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        VerticalOptions="Center" />
+
+                    <Label
+                        Grid.Column="1"
+                        Text="›"
+                        TextColor="#AAAAAA"
+                        FontSize="28"
+                        VerticalOptions="Center" />
+
+                </Grid>
+
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="ActividadBorder_Tapped" />
+                </Border.GestureRecognizers>
+
+            </Border>
+
+            <!-- CORREO -->
+            <Border
+                Margin="0,20,0,0"
+                Padding="18,15"
+                BackgroundColor="#171717"
+                Stroke="#444444"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 14">
+
+                <Grid ColumnDefinitions="*,Auto">
+                    <VerticalStackLayout Spacing="2">
+                        <Label Text="CORREO DE VERIFICACIÓN" TextColor="#999999"
+                               FontSize="11" FontAttributes="Bold" CharacterSpacing="1" />
+                        <Label Text="Configurar códigos de PIN" TextColor="White" FontSize="15"
+                               FontAttributes="Bold" />
+                    </VerticalStackLayout>
+                    <Label Grid.Column="1" Text="›" TextColor="#AAAAAA" FontSize="28"
+                           VerticalOptions="Center" />
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="CorreoBorder_Tapped" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+            </Border>
+
+            <!-- SECCIÓN AVANZADA (oculta: se revela tocando 5 veces el logo VIKING) -->
+            <VerticalStackLayout x:Name="AvanzadoStack" IsVisible="False" Spacing="0">
+
+                <Label
+                    Text="MODO AVANZADO"
+                    TextColor="#555555"
+                    FontSize="11"
+                    FontAttributes="Bold"
+                    CharacterSpacing="1"
+                    Margin="4,20,0,10" />
+
+                <!-- VALIDACIÓN DE IDENTIDAD -->
+                <Border
+                    x:Name="IdentidadBorder"
+                    Padding="18,15"
+                    BackgroundColor="#171717"
+                    Stroke="#444444"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 14">
+
+                    <Grid ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="VALIDACIÓN DE IDENTIDAD" TextColor="#999999"
+                                   FontSize="11" FontAttributes="Bold" CharacterSpacing="1" />
+                            <Label
+                                x:Name="IdentidadLabel"
+                                Text="🟢 Con Viking PC"
+                                TextColor="White"
+                                FontSize="15"
+                                FontAttributes="Bold" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="1" Text="›" TextColor="#AAAAAA" FontSize="28"
+                               VerticalOptions="Center" />
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="IdentidadBorder_Tapped" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </Border>
+
+                <Label
+                    x:Name="IdentidadAyudaLabel"
+                    Text="En Manual se puede crear el PIN sin que Viking PC confirme el alumno o el establecimiento. Úsalo solo mientras Viking PC no tenga listos api/cliente/validar y api/admin/validar."
+                    TextColor="#777777"
+                    FontSize="11"
+                    Margin="4,8,4,0"
+                    IsVisible="False" />
+
+                <!-- DIAGNÓSTICO -->
+                <Border
+                    Margin="0,12,0,0"
+                    Padding="18,15"
+                    BackgroundColor="#171717"
+                    Stroke="#444444"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 14">
+
+                    <Grid ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="DIAGNÓSTICO" TextColor="#999999"
+                                   FontSize="11" FontAttributes="Bold" CharacterSpacing="1" />
+                            <Label Text="Ver últimos errores registrados" TextColor="White" FontSize="15"
+                                   FontAttributes="Bold" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="1" Text="›" TextColor="#AAAAAA" FontSize="28"
+                               VerticalOptions="Center" />
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="DiagnosticoBorder_Tapped" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </Border>
+
+            </VerticalStackLayout>
+
+            <!-- PENDIENTES -->
+            <Border
+                Margin="0,20,0,0"
+                Padding="18,16"
+                BackgroundColor="#171717"
+                Stroke="#444444"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 14">
+
+                <VerticalStackLayout
+                    Spacing="12">
+
+                    <Grid
+                        ColumnDefinitions="*,Auto">
+
+                        <VerticalStackLayout
+                            Spacing="2">
+
+                            <Label
+                                Text="ASISTENCIAS PENDIENTES"
+                                TextColor="#999999"
+                                FontSize="11"
+                                FontAttributes="Bold"
+                                CharacterSpacing="1" />
+
+                            <Label
+                                Text="Guardadas para sincronizar"
+                                TextColor="#777777"
+                                FontSize="12" />
+
+                        </VerticalStackLayout>
+
+                        <Label
+                            x:Name="PendientesLabel"
+                            Grid.Column="1"
+                            Text="0"
+                            TextColor="White"
+                            FontSize="26"
+                            FontAttributes="Bold"
+                            VerticalOptions="Center" />
+
+                    </Grid>
+
+                    <Button
+                        x:Name="SincronizarAhoraButton"
+                        Text="🔄 SINCRONIZAR AHORA"
+                        FontSize="14"
+                        FontAttributes="Bold"
+                        TextColor="White"
+                        BackgroundColor="#2563EB"
+                        CornerRadius="12"
+                        HeightRequest="48"
+                        Clicked="SincronizarAhoraButton_Clicked" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <!-- ESTADO Y REINTENTO -->
+            <VerticalStackLayout
+                Margin="0,20,0,15"
+                Spacing="6">
+
+                <Label
+                    x:Name="EstadoLabel"
+                    Text="Configurando..."
+                    TextColor="#AAAAAA"
+                    FontSize="13"
+                    HorizontalTextAlignment="Center" />
+
+                <Button
+                    x:Name="ReintentarConexionButton"
+                    Text="🔄 Reprobar conexión"
+                    FontSize="12"
+                    TextColor="#3B82F6"
+                    BackgroundColor="Transparent"
+                    HeightRequest="36"
+                    IsVisible="False"
+                    Clicked="ReintentarConexionButton_Clicked" />
+
+            </VerticalStackLayout>
+
+            <!-- CONTINUAR -->
+            <Button
+                x:Name="ContinuarButton"
+                Text="CONTINUAR"
+                FontSize="16"
+                FontAttributes="Bold"
+                TextColor="Black"
+                BackgroundColor="White"
+                CornerRadius="16"
+                HeightRequest="55"
+                Clicked="ContinuarButton_Clicked" />
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

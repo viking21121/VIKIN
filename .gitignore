@@ -1,0 +1,29 @@
+## .NET / Visual Studio / MAUI .gitignore
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.db
+*.sqlite
+*.sqlite3
+*.log
+
+# Android & MAUI temporary files
+platforms/android/bin/
+platforms/android/obj/
+*.apk
+*.aab
+
+# Publish / Deployment outputs
+publish/
+*.pubxml
+*.pubxml.user
+
+# Rider / VS Code
+.idea/
+.vscode/

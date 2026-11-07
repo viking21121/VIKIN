@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:admin="clr-namespace:VikingMobile.Application.Admin"
+    x:Class="VikingMobile.AdminAlumnosPage"
+    BackgroundColor="Black"
+    Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="Auto,Auto,*">
+
+        <!-- ENCABEZADO -->
+        <Grid Padding="24,55,24,0" ColumnDefinitions="Auto,*">
+            <Label
+                Text="‹"
+                TextColor="White"
+                FontSize="30"
+                FontAttributes="Bold"
+                VerticalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="VolverLabel_Tapped" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Label
+                Grid.Column="1"
+                x:Name="TituloLabel"
+                Text="👥 Alumnos"
+                TextColor="White"
+                FontSize="22"
+                FontAttributes="Bold"
+                Margin="10,0,0,0"
+                VerticalOptions="Center" />
+        </Grid>
+
+        <!-- FILTROS -->
+        <VerticalStackLayout Grid.Row="1" Padding="24,16,24,10" Spacing="12">
+
+            <Border
+                Padding="16,4"
+                BackgroundColor="#171717"
+                Stroke="#444444"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 14">
+
+                <Entry
+                    x:Name="BuscarEntry"
+                    Placeholder="Buscar por nombre o código"
+                    PlaceholderColor="#666666"
+                    TextColor="White"
+                    FontSize="15"
+                    TextChanged="BuscarEntry_TextChanged" />
+
+            </Border>
+
+            <HorizontalStackLayout Spacing="8">
+
+                <Border
+                    x:Name="FiltroTodosBorder"
+                    Padding="14,6"
+                    BackgroundColor="White"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 20">
+                    <Label x:Name="FiltroTodosLabel" Text="Todos" TextColor="Black" FontSize="12" FontAttributes="Bold" />
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="FiltroTodos_Tapped" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <Border
+                    x:Name="FiltroPorVencerBorder"
+                    Padding="14,6"
+                    BackgroundColor="#171717"
+                    Stroke="#444444"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 20">
+                    <Label Text="⚠️ Por vencer" TextColor="#FBBF24" FontSize="12" FontAttributes="Bold" />
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="FiltroPorVencer_Tapped" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <Border
+                    x:Name="FiltroMorosoBorder"
+                    Padding="14,6"
+                    BackgroundColor="#171717"
+                    Stroke="#444444"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 20">
+                    <Label Text="🔴 Morosos" TextColor="#F87171" FontSize="12" FontAttributes="Bold" />
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="FiltroMoroso_Tapped" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+
+        <!-- LISTA -->
+        <RefreshView
+            Grid.Row="2"
+            x:Name="ListaRefresh"
+            RefreshColor="White"
+            Refreshing="ListaRefresh_Refreshing">
+
+            <CollectionView
+                x:Name="AlumnosCollection"
+                SelectionMode="None"
+                Margin="24,0,24,20"
+                EmptyView="Sin alumnos que coincidan con la búsqueda">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="admin:AlumnoAdminResumen">
+                        <Border
+                            Margin="0,0,0,10"
+                            Padding="16,14"
+                            BackgroundColor="#171717"
+                            Stroke="#444444"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 14">
+
+                            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+
+                                <!-- FOTO CIRCULAR / AVATAR -->
+                                <Border
+                                    WidthRequest="50"
+                                    HeightRequest="50"
+                                    StrokeShape="RoundRectangle 25"
+                                    Stroke="{Binding EstadoMembresia, Converter={StaticResource EstadoColorConverter}}"
+                                    StrokeThickness="2"
+                                    BackgroundColor="#242424"
+                                    VerticalOptions="Center">
+                                    <Grid>
+                                        <!-- Foto del alumno -->
+                                        <Image
+                                            Source="{Binding UrlFotoCompleta}"
+                                            Aspect="AspectFill"
+                                            WidthRequest="50"
+                                            HeightRequest="50"
+                                            IsVisible="{Binding TieneFoto}" />
+
+                                        <!-- Iniciales si no tiene foto -->
+                                        <Label
+                                            Text="{Binding Iniciales}"
+                                            TextColor="#CCCCCC"
+                                            FontSize="16"
+                                            FontAttributes="Bold"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center"
+                                            IsVisible="{Binding NoTieneFoto}" />
+                                    </Grid>
+                                </Border>
+
+                                <!-- DATOS DEL ALUMNO -->
+                                <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+                                    <Label
+                                        Text="{Binding Nombre}"
+                                        TextColor="White"
+                                        FontSize="15"
+                                        FontAttributes="Bold"
+                                        MaxLines="1"
+                                        LineBreakMode="TailTruncation" />
+
+                                    <HorizontalStackLayout Spacing="6">
+                                        <Label
+                                            Text="{Binding Codigo}"
+                                            TextColor="#EAB308"
+                                            FontSize="12"
+                                            FontAttributes="Bold" />
+                                        <Label Text="·" TextColor="#555555" FontSize="12" />
+                                        <Label
+                                            Text="{Binding CedulaTexto}"
+                                            TextColor="#999999"
+                                            FontSize="12" />
+                                    </HorizontalStackLayout>
+
+                                    <Label
+                                        Text="{Binding PlanNombre}"
+                                        TextColor="#777777"
+                                        FontSize="11"
+                                        MaxLines="1"
+                                        LineBreakMode="TailTruncation" />
+                                </VerticalStackLayout>
+
+                                <!-- ESTADO Y SALDO -->
+                                <VerticalStackLayout
+                                    Grid.Column="2"
+                                    Spacing="4"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="End">
+
+                                    <Border
+                                        Padding="10,3"
+                                        BackgroundColor="{Binding EstadoMembresia, Converter={StaticResource EstadoColorConverter}}"
+                                        StrokeThickness="0"
+                                        StrokeShape="RoundRectangle 20">
+                                        <Label
+                                            Text="{Binding EstadoMembresia, Converter={StaticResource EstadoTextoConverter}}"
+                                            TextColor="White"
+                                            FontSize="10"
+                                            FontAttributes="Bold" />
+                                    </Border>
+
+                                    <Label
+                                        Text="{Binding MontoPendiente, StringFormat='Debe ${0}'}"
+                                        TextColor="#F87171"
+                                        FontSize="12"
+                                        FontAttributes="Bold"
+                                        HorizontalTextAlignment="End"
+                                        IsVisible="{Binding MontoPendiente, Converter={StaticResource MayorQueCeroConverter}}" />
+
+                                </VerticalStackLayout>
+
+                            </Grid>
+
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Alumno_Tapped" />
+                            </Border.GestureRecognizers>
+
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+        </RefreshView>
+
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,85 @@
+using System.Text;
+
+namespace VikingMobile.Diagnostics;
+
+/// <summary>
+/// Registro de eventos y errores a archivo, uno por día, dentro de la
+/// carpeta de datos de la app (<c>Logs/viking-AAAA-MM-DD.log</c>).
+///
+/// - Nunca lanza excepciones.
+/// - Conserva 14 días y borra el resto.
+/// - Es seguro desde varios hilos.
+///
+/// Complementa a <see cref="CrashLogger"/>, que guarda el último fallo no
+/// controlado para mostrarlo en pantalla.
+/// </summary>
+public static class AppLog
+{
+    private const int DiasRetencion = 14;
+
+    private static readonly object Candado = new();
+    private static bool limpiezaHecha;
+
+    public static string Carpeta =>
+        Path.Combine(FileSystem.AppDataDirectory, "Logs");
+
+    public static void Info(string mensaje) => Escribir("INFO", mensaje, null);
+
+    public static void Warn(string mensaje, Exception? ex = null) => Escribir("WARN", mensaje, ex);
+
+    public static void Error(string mensaje, Exception? ex = null) => Escribir("ERROR", mensaje, ex);
+
+    private static void Escribir(string nivel, string mensaje, Exception? ex)
+    {
+        try
+        {
+            var linea = new StringBuilder()
+                .Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"))
+                .Append(" [").Append(nivel).Append("] ")
+                .Append(mensaje);
+
+            if (ex != null)
+                linea.AppendLine().Append(ex);
+
+            linea.AppendLine();
+
+            lock (Candado)
+            {
+                Directory.CreateDirectory(Carpeta);
+
+                string archivo = Path.Combine(
+                    Carpeta, $"viking-{DateTime.Now:yyyy-MM-dd}.log");
+
+                File.AppendAllText(archivo, linea.ToString(), Encoding.UTF8);
+
+                if (!limpiezaHecha)
+                {
+                    limpiezaHecha = true;
+                    LimpiarAntiguos();
+                }
+            }
+        }
+        catch
+        {
+            // El registro nunca debe interrumpir la app.
+        }
+    }
+
+    private static void LimpiarAntiguos()
+    {
+        try
+        {
+            var limite = DateTime.Now.AddDays(-DiasRetencion);
+
+            foreach (var archivo in new DirectoryInfo(Carpeta).GetFiles("viking-*.log"))
+            {
+                if (archivo.LastWriteTime < limite)
+                    archivo.Delete();
+            }
+        }
+        catch
+        {
+            // Limpieza de mejor esfuerzo.
+        }
+    }
+}

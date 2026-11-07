@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Shell
+    x:Class="VikingMobile.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:VikingMobile"
+    Title="Viking Mobile">
+
+    <ShellContent
+        Title="Inicio"
+        ContentTemplate="{DataTemplate local:ModoSelectorPage}"
+        Route="ModoSelectorPage" />
+
+    <ShellContent
+        Title="Configuración"
+        ContentTemplate="{DataTemplate local:ConfiguracionPage}"
+        Route="ConfiguracionPage" />
+
+    <ShellContent
+        Title="Scanner"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+
+</Shell>

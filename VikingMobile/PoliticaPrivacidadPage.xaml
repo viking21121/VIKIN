@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VikingMobile.PoliticaPrivacidadPage"
+    BackgroundColor="Black"
+    Shell.NavBarIsVisible="False">
+
+    <ScrollView>
+
+        <VerticalStackLayout Padding="24,55,24,40" Spacing="14">
+
+            <Grid ColumnDefinitions="Auto,*">
+                <Label
+                    Text="‹"
+                    TextColor="White"
+                    FontSize="30"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="VolverLabel_Tapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label
+                    Grid.Column="1"
+                    Text="🔒 Privacidad"
+                    TextColor="White"
+                    FontSize="22"
+                    FontAttributes="Bold"
+                    Margin="10,0,0,0"
+                    VerticalOptions="Center" />
+            </Grid>
+
+            <Label
+                Text="Qué datos guarda Viking Mobile y por qué"
+                TextColor="#888888"
+                FontSize="13"
+                Margin="0,4,0,10" />
+
+            <Label Text="📍 Dónde vive tu información" TextColor="White" FontSize="15" FontAttributes="Bold" Margin="0,10,0,0" />
+            <Label
+                Text="Todos los datos de alumnos, pagos, comprobantes y asistencias se guardan únicamente en la computadora del establecimiento (Viking PC), no en un servidor externo ni en la nube. Tu celular solo se conecta a esa computadora por su red local."
+                TextColor="#BBBBBB"
+                FontSize="13"
+                LineBreakMode="WordWrap" />
+
+            <Label Text="🧾 Comprobantes de pago" TextColor="White" FontSize="15" FontAttributes="Bold" Margin="0,10,0,0" />
+            <Label
+                Text="Cuando subes una foto de tu comprobante de pago, esa imagen se guarda en la base de datos del establecimiento para que el administrador la revise y apruebe el pago. No se comparte con nadie más ni se sube a ningún otro servicio."
+                TextColor="#BBBBBB"
+                FontSize="13"
+                LineBreakMode="WordWrap" />
+
+            <Label Text="🔑 Tu PIN" TextColor="White" FontSize="15" FontAttributes="Bold" Margin="0,10,0,0" />
+            <Label
+                Text="Tu PIN no se guarda como texto: se guarda cifrado (hash), únicamente en tu propio celular. Ni el establecimiento ni nadie más puede verlo."
+                TextColor="#BBBBBB"
+                FontSize="13"
+                LineBreakMode="WordWrap" />
+
+            <Label Text="📷 Cámara y galería" TextColor="White" FontSize="15" FontAttributes="Bold" Margin="0,10,0,0" />
+            <Label
+                Text="Se usan solo para que puedas escanear tu código QR de acceso y adjuntar la foto de tu comprobante de pago cuando tú lo decides. La app no accede a tus fotos ni a la cámara en ningún otro momento."
+                TextColor="#BBBBBB"
+                FontSize="13"
+                LineBreakMode="WordWrap" />
+
+            <Label Text="🌐 Tasa de cambio" TextColor="White" FontSize="15" FontAttributes="Bold" Margin="0,10,0,0" />
+            <Label
+                Text="Para sugerir la tasa BCV automáticamente, Viking PC consulta una fuente pública en internet. No se envía ningún dato personal en esa consulta."
+                TextColor="#BBBBBB"
+                FontSize="13"
+                LineBreakMode="WordWrap" />
+
+            <Label
+                Text="Si tienes dudas sobre tus datos, contacta directamente al establecimiento donde entrenas: es quien administra tu información."
+                TextColor="#777777"
+                FontSize="12"
+                Margin="0,20,0,0"
+                LineBreakMode="WordWrap" />
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

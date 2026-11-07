@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VikingMobile.ConfirmarComprobantePage"
+    BackgroundColor="Black"
+    Shell.NavBarIsVisible="False">
+
+    <VerticalStackLayout Padding="24,55,24,35" Spacing="0">
+
+        <Label
+            Text="¿Enviar este comprobante?"
+            TextColor="White"
+            FontSize="20"
+            FontAttributes="Bold"
+            HorizontalTextAlignment="Center" />
+
+        <Label
+            Text="Revísalo bien antes de enviarlo — una vez enviado, el administrador lo verá tal cual."
+            TextColor="#888888"
+            FontSize="13"
+            HorizontalTextAlignment="Center"
+            Margin="0,8,0,20" />
+
+        <Border
+            Padding="6"
+            BackgroundColor="#171717"
+            Stroke="#444444"
+            StrokeThickness="1"
+            StrokeShape="RoundRectangle 14">
+
+            <Image
+                x:Name="PreviewImagen"
+                Aspect="AspectFit"
+                MaximumHeightRequest="420" />
+
+        </Border>
+
+        <Button
+            x:Name="EnviarButton"
+            Text="ENVIAR COMPROBANTE"
+            TextColor="Black"
+            BackgroundColor="White"
+            FontAttributes="Bold"
+            CornerRadius="16"
+            HeightRequest="55"
+            Margin="0,24,0,0"
+            Clicked="EnviarButton_Clicked" />
+
+        <Button
+            Text="Elegir otra foto"
+            TextColor="White"
+            BackgroundColor="Transparent"
+            FontAttributes="Bold"
+            HeightRequest="46"
+            Margin="0,10,0,0"
+            Clicked="CancelarButton_Clicked" />
+
+    </VerticalStackLayout>
+
+</ContentPage>

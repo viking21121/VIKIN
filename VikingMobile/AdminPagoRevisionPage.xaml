@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VikingMobile.AdminPagoRevisionPage"
+    BackgroundColor="Black"
+    Shell.NavBarIsVisible="False">
+
+    <ScrollView>
+
+        <VerticalStackLayout Padding="24,55,24,35" Spacing="0">
+
+            <Grid ColumnDefinitions="Auto,*">
+                <Label
+                    Text="‹"
+                    TextColor="White"
+                    FontSize="30"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="VolverLabel_Tapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <VerticalStackLayout Grid.Column="1" Margin="10,0,0,0" Spacing="1">
+                    <Label x:Name="NombreLabel" Text="Alumno" TextColor="White" FontSize="20" FontAttributes="Bold" />
+                    <Label x:Name="CodigoLabel" Text="A000" TextColor="#888888" FontSize="12" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <!-- RESUMEN -->
+            <Border
+                Margin="0,20,0,0"
+                Padding="18"
+                BackgroundColor="#171717"
+                Stroke="#444444"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 16">
+
+                <Grid ColumnDefinitions="*,Auto">
+                    <VerticalStackLayout Spacing="2">
+                        <Label x:Name="ConceptoLabel" Text="Mensualidad" TextColor="White" FontSize="16" FontAttributes="Bold" />
+                        <Label x:Name="FechaLabel" Text="—" TextColor="#888888" FontSize="12" />
+                    </VerticalStackLayout>
+                    <Label
+                        Grid.Column="1"
+                        x:Name="MontoLabel"
+                        Text="$0"
+                        TextColor="#4ADE80"
+                        FontSize="22"
+                        FontAttributes="Bold"
+                        VerticalOptions="Center" />
+                </Grid>
+
+            </Border>
+
+            <!-- COMPROBANTE -->
+            <Label Text="📎 COMPROBANTE" TextColor="#999999" FontSize="12" FontAttributes="Bold" Margin="4,26,0,8" />
+
+            <Border
+                Padding="8"
+                BackgroundColor="#171717"
+                Stroke="#444444"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 14"
+                MinimumHeightRequest="120">
+
+                <Grid>
+                    <ActivityIndicator x:Name="CargandoImagen" IsRunning="True" Color="White" />
+
+                    <Image
+                        x:Name="ComprobanteImagen"
+                        Aspect="AspectFit"
+                        MaximumHeightRequest="420"
+                        IsVisible="False" />
+
+                    <Label
+                        x:Name="SinComprobanteLabel"
+                        Text="El alumno todavía no ha subido su comprobante."
+                        TextColor="#888888"
+                        FontSize="13"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Padding="20"
+                        IsVisible="False" />
+                </Grid>
+
+            </Border>
+
+            <!-- APROBAR -->
+            <Label Text="✅ APROBAR PAGO" TextColor="#999999" FontSize="12" FontAttributes="Bold" Margin="4,26,0,8" />
+
+            <Border
+                Padding="18"
+                BackgroundColor="#171717"
+                Stroke="#444444"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 14">
+
+                <VerticalStackLayout Spacing="12">
+
+                    <Label Text="MÉTODO DE PAGO" TextColor="#999999" FontSize="11" FontAttributes="Bold" />
+                    <Picker x:Name="MetodoPicker" TextColor="White" TitleColor="#666666">
+                        <Picker.Items>
+                            <x:String>Efectivo $</x:String>
+                            <x:String>Efectivo bs</x:String>
+                            <x:String>Pagomovil</x:String>
+                            <x:String>Transferencia</x:String>
+                            <x:String>Zelle</x:String>
+                            <x:String>Binance Pay</x:String>
+                        </Picker.Items>
+                    </Picker>
+
+                    <Label Text="TASA BCV (SI APLICA)" TextColor="#999999" FontSize="11" FontAttributes="Bold" />
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                        <Entry x:Name="TasaEntry" Placeholder="0.00" Keyboard="Numeric" TextColor="White" PlaceholderColor="#666666" />
+                        <Button
+                            Grid.Column="1"
+                            x:Name="ActualizarTasaButton"
+                            Text="🔄"
+                            WidthRequest="46"
+                            HeightRequest="46"
+                            Padding="0"
+                            BackgroundColor="#2A2A2A"
+                            TextColor="White"
+                            Clicked="ActualizarTasaButton_Clicked" />
+                    </Grid>
+
+                    <Label Text="REFERENCIA (OPCIONAL)" TextColor="#999999" FontSize="11" FontAttributes="Bold" />
+                    <Entry x:Name="ReferenciaEntry" Placeholder="Número de referencia" TextColor="White" PlaceholderColor="#666666" />
+
+                    <Label
+                        x:Name="ErrorLabel"
+                        Text=""
+                        TextColor="#F87171"
+                        FontSize="13"
+                        IsVisible="False" />
+
+                    <Button
+                        x:Name="AprobarButton"
+                        Text="APROBAR Y REGISTRAR PAGO"
+                        TextColor="Black"
+                        BackgroundColor="#4ADE80"
+                        FontAttributes="Bold"
+                        CornerRadius="14"
+                        HeightRequest="52"
+                        Clicked="AprobarButton_Clicked" />
+
+                    <Button
+                        x:Name="RechazarButton"
+                        Text="RECHAZAR COMPROBANTE"
+                        TextColor="White"
+                        BackgroundColor="#B91C1C"
+                        FontAttributes="Bold"
+                        CornerRadius="14"
+                        HeightRequest="48"
+                        Clicked="RechazarButton_Clicked" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

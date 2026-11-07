@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VikingMobile.ModoSelectorPage"
+    BackgroundColor="Black"
+    Shell.NavBarIsVisible="False">
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="30,70,30,35"
+            Spacing="0">
+
+            <!-- LOGO -->
+            <Image
+                x:Name="LogoEstablecimientoImagen"
+                HeightRequest="72"
+                Aspect="AspectFit"
+                Margin="0,0,0,10"
+                IsVisible="False" />
+
+            <Label
+                x:Name="LogoTextoLabel"
+                Text="VIKING"
+                TextColor="White"
+                FontSize="40"
+                FontAttributes="Bold"
+                CharacterSpacing="6"
+                HorizontalTextAlignment="Center" />
+
+            <Label
+                x:Name="MobileTextoLabel"
+                Text="MOBILE"
+                TextColor="#AAAAAA"
+                FontSize="14"
+                FontAttributes="Bold"
+                CharacterSpacing="6"
+                HorizontalTextAlignment="Center"
+                Margin="0,0,0,45" />
+
+            <Label
+                Text="¿Cómo deseas continuar?"
+                TextColor="White"
+                FontSize="20"
+                FontAttributes="Bold"
+                HorizontalTextAlignment="Center" />
+
+            <Label
+                Text="Selecciona tu tipo de acceso"
+                TextColor="#AAAAAA"
+                FontSize="13"
+                HorizontalTextAlignment="Center"
+                Margin="0,6,0,30" />
+
+            <!-- MODO ADMINISTRADOR -->
+            <Border
+                x:Name="AdministradorBorder"
+                Padding="20,20"
+                BackgroundColor="#171717"
+                Stroke="#444444"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 16">
+
+                <Grid ColumnDefinitions="55,*,Auto">
+
+                    <Label
+                        Text="👨‍💼"
+                        FontSize="30"
+                        VerticalOptions="Center" />
+
+                    <VerticalStackLayout
+                        Grid.Column="1"
+                        Spacing="2"
+                        VerticalOptions="Center">
+
+                        <Label
+                            Text="Modo Administrador"
+                            TextColor="White"
+                            FontSize="17"
+                            FontAttributes="Bold" />
+
+                        <Label
+                            Text="Alumnos, pagos, recibos y reportes"
+                            TextColor="#999999"
+                            FontSize="12" />
+
+                    </VerticalStackLayout>
+
+                    <Label
+                        Grid.Column="2"
+                        Text="›"
+                        TextColor="#AAAAAA"
+                        FontSize="28"
+                        VerticalOptions="Center" />
+
+                </Grid>
+
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="AdministradorBorder_Tapped" />
+                </Border.GestureRecognizers>
+
+            </Border>
+
+            <!-- MODO CLIENTE -->
+            <Border
+                x:Name="ClienteBorder"
+                Margin="0,16,0,0"
+                Padding="20,20"
+                BackgroundColor="#171717"
+                Stroke="#444444"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 16">
+
+                <Grid ColumnDefinitions="55,*,Auto">
+
+                    <Label
+                        Text="👤"
+                        FontSize="30"
+                        VerticalOptions="Center" />
+
+                    <VerticalStackLayout
+                        Grid.Column="1"
+                        Spacing="2"
+                        VerticalOptions="Center">
+
+                        <Label
+                            Text="Modo Cliente"
+                            TextColor="White"
+                            FontSize="17"
+                            FontAttributes="Bold" />
+
+                        <Label
+                            Text="Consulta tu plan, deuda y recibos"
+                            TextColor="#999999"
+                            FontSize="12" />
+
+                    </VerticalStackLayout>
+
+                    <Label
+                        Grid.Column="2"
+                        Text="›"
+                        TextColor="#AAAAAA"
+                        FontSize="28"
+                        VerticalOptions="Center" />
+
+                </Grid>
+
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ClienteBorder_Tapped" />
+                </Border.GestureRecognizers>
+
+            </Border>
+
+            <!-- ACCESO INTERNO (uso del staff que ya escanea asistencia) -->
+            <Label
+                Text="📷 Registrar asistencia con el escáner"
+                TextColor="#3B82F6"
+                FontSize="13"
+                FontAttributes="Bold"
+                HorizontalTextAlignment="Center"
+                Margin="0,34,0,0">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="EscanerLabel_Tapped" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Label
+                Text="🔒 Política de privacidad"
+                TextColor="#666666"
+                FontSize="12"
+                HorizontalTextAlignment="Center"
+                Margin="0,14,0,0">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="PrivacidadLabel_Tapped" />
+                </Label.GestureRecognizers>
+            </Label>
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

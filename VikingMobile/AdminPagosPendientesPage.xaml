@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:admin="clr-namespace:VikingMobile.Application.Admin"
+    x:Class="VikingMobile.AdminPagosPendientesPage"
+    BackgroundColor="Black"
+    Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="Auto,Auto,*">
+
+        <Grid Padding="24,55,24,16" ColumnDefinitions="Auto,*">
+            <Label
+                Text="‹"
+                TextColor="White"
+                FontSize="30"
+                FontAttributes="Bold"
+                VerticalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="VolverLabel_Tapped" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Label
+                Grid.Column="1"
+                Text="🧾 Pagos por aprobar"
+                TextColor="White"
+                FontSize="22"
+                FontAttributes="Bold"
+                Margin="10,0,0,0"
+                VerticalOptions="Center" />
+        </Grid>
+
+        <Border
+            Grid.Row="1"
+            Margin="24,0,24,12"
+            Padding="16,4"
+            BackgroundColor="#171717"
+            Stroke="#444444"
+            StrokeThickness="1"
+            StrokeShape="RoundRectangle 14">
+
+            <Entry
+                x:Name="BuscarEntry"
+                Placeholder="Buscar por nombre o código"
+                PlaceholderColor="#666666"
+                TextColor="White"
+                FontSize="15"
+                TextChanged="BuscarEntry_TextChanged" />
+
+        </Border>
+
+        <RefreshView
+            Grid.Row="2"
+            x:Name="ListaRefresh"
+            RefreshColor="White"
+            Refreshing="ListaRefresh_Refreshing">
+
+            <CollectionView
+                x:Name="SolicitudesCollection"
+                SelectionMode="None"
+                Margin="24,0,24,20"
+                EmptyView="No hay solicitudes de pago pendientes">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="admin:SolicitudPagoAdminResumen">
+                        <Border
+                            Margin="0,0,0,10"
+                            Padding="16,14"
+                            BackgroundColor="#171717"
+                            Stroke="#444444"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 14">
+
+                            <Grid ColumnDefinitions="*,Auto">
+
+                                <VerticalStackLayout Spacing="3">
+                                    <Label Text="{Binding NombreAlumno}" TextColor="White" FontSize="16" FontAttributes="Bold" />
+                                    <Label Text="{Binding CodigoAlumno}" TextColor="#888888" FontSize="12" />
+                                    <Label Text="{Binding Concepto}" TextColor="#888888" FontSize="12" />
+                                    <Label
+                                        Text="{Binding TieneComprobante, Converter={StaticResource ComprobanteEstadoConverter}}"
+                                        TextColor="#FBBF24"
+                                        FontSize="11"
+                                        FontAttributes="Bold" />
+                                </VerticalStackLayout>
+
+                                <Label
+                                    Grid.Column="1"
+                                    Text="{Binding MontoUsd, StringFormat='${0}'}"
+                                    TextColor="#4ADE80"
+                                    FontSize="16"
+                                    FontAttributes="Bold"
+                                    VerticalOptions="Start" />
+
+                            </Grid>
+
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Solicitud_Tapped" />
+                            </Border.GestureRecognizers>
+
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+        </RefreshView>
+
+    </Grid>
+
+</ContentPage>

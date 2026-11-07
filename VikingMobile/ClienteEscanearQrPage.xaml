@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
+    x:Class="VikingMobile.ClienteEscanearQrPage"
+    BackgroundColor="Black"
+    Shell.NavBarIsVisible="False">
+
+    <Grid>
+
+        <zxing:CameraBarcodeReaderView
+            x:Name="BarcodeReaderView"
+            IsDetecting="True"
+            BarcodesDetected="BarcodesDetected"
+            CameraLocation="Rear" />
+
+        <BoxView
+            BackgroundColor="#CC000000"
+            HeightRequest="110"
+            VerticalOptions="Start" />
+
+        <Grid ColumnDefinitions="Auto,*" Padding="20,50,20,0" VerticalOptions="Start">
+            <Label
+                Text="‹"
+                TextColor="White"
+                FontSize="30"
+                FontAttributes="Bold"
+                VerticalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="VolverLabel_Tapped" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Label
+                Grid.Column="1"
+                x:Name="StatusLabel"
+                Text="Escanea tu código QR"
+                TextColor="White"
+                FontSize="16"
+                FontAttributes="Bold"
+                HorizontalTextAlignment="Center"
+                Margin="-30,0,0,0"
+                VerticalOptions="Center" />
+        </Grid>
+
+        <Border
+            WidthRequest="270"
+            HeightRequest="270"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Stroke="White"
+            StrokeThickness="3"
+            StrokeShape="RoundRectangle 24"
+            BackgroundColor="Transparent" />
+
+        <Border
+            HorizontalOptions="Center"
+            VerticalOptions="End"
+            Margin="20,0,20,35"
+            Padding="18,12"
+            BackgroundColor="#CC000000"
+            StrokeThickness="0"
+            StrokeShape="RoundRectangle 18">
+
+            <Label
+                Text="Es el mismo QR que usas para marcar asistencia"
+                TextColor="#EEEEEE"
+                FontSize="13"
+                HorizontalTextAlignment="Center" />
+
+        </Border>
+
+    </Grid>
+
+</ContentPage>

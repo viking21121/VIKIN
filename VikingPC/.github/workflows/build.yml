@@ -1,0 +1,30 @@
+name: Compilar y probar
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v4
+
+      - name: Instalar .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restaurar dependencias
+        run: |
+          dotnet restore VIKING.sln
+          dotnet restore Viking.Tests/Viking.Tests.csproj
+
+      - name: Compilar
+        run: dotnet build VIKING.sln -c Release --no-restore
+
+      - name: Pruebas
+        run: dotnet test Viking.Tests/Viking.Tests.csproj -c Release --no-restore
